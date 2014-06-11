@@ -43,15 +43,25 @@ public class Item {
 	}
 
 	public boolean equals(Item item){
-		return true;
-	}
-	
-	public void addItem(){
+		if(item.itemPrice == itemPrice && item.itemName.equalsIgnoreCase(itemName) && item.itemID.equals(itemID))
+			return true;
+		else
+			return false;
 		
 	}
 	
+	public void addItem(){
+		count++;
+	}
+	
 	public boolean purchase(){
-		return true;
+		//if item is available decrement the stock count
+		if(count>0){
+			count--;
+			return true;
+		}
+		else
+			return false;
 	}
 	
 	public String toString(){
@@ -63,18 +73,13 @@ public class Item {
 		//get the first character of the ID
 		if(ID.length() ==8 ){
 			String firstCharacter = String.valueOf(ID.charAt(0));
-			System.out.println(firstCharacter);
-			
 			if(firstCharacter.equals("i")){
 				//get the 7 characters followed by i
 				String valueString = ID.substring(1,8);
-				System.out.println(valueString);
-				
 				//checking whether the remaining 7 characters are digits
 				
 				try {
 					int valueInt= Integer.parseInt(valueString);
-					System.out.println("Integers");
 					return true;
 					
 				}catch(Exception e){
@@ -93,12 +98,7 @@ public class Item {
 	}
 	
 
-	public static void main(String args[]){
-		Item i=new Item();
-		i.setItemID("i1234d67");
 		
-	}
-	
 }	
 	
 
